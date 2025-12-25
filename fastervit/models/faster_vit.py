@@ -101,7 +101,7 @@ def ct_dewindow(ct, W, H, window_size):         #将窗口token转化为全图to
     return ct2
 
 
-def ct_window(ct, W, H, window_size):       #将全局token整合为窗口形式, (B,H*W,C) -> (B*num_window,H//window_size,window_size,W//window_size,window_size,C)
+def ct_window(ct, W, H, window_size):       #将全局token整合为窗口形式, (B,H*W,C) -> (B,H//window_size,window_size,W//window_size,window_size,C)
     bs = ct.shape[0]
     N = ct.shape[2]
     ct = ct.view(bs, H // window_size, window_size, W // window_size, window_size, N)
