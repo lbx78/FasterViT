@@ -93,7 +93,7 @@ def window_reverse(windows, window_size, H, W, B):    #window_partition的逆操
     return x
 
 
-def ct_dewindow(ct, W, H, window_size):
+def ct_dewindow(ct, W, H, window_size):         #将窗口token转化为全图token (B*num_window, window_size*window_size, C) -> (B,H*W,C)
     bs = ct.shape[0]
     N=ct.shape[2]
     ct2 = ct.view(-1, W//window_size, H//window_size, window_size, window_size, N).permute(0, 5, 1, 3, 2, 4)
