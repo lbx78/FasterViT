@@ -87,7 +87,7 @@ def window_partition(x, window_size):     #划分窗口 (B,C,H,W) -> (B*num_wind
     return windows
 
 
-def window_reverse(windows, window_size, H, W, B):
+def window_reverse(windows, window_size, H, W, B):    #window_partition的逆操作, (B*num_window, window_size*window_size, C) -> (B,C,H,W)
     x = windows.view(B, H // window_size, W // window_size, window_size, window_size, -1)
     x = x.permute(0, 5, 1, 3, 2, 4).reshape(B, windows.shape[2], H, W)
     return x
