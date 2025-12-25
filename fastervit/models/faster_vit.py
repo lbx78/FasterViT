@@ -80,7 +80,7 @@ default_cfgs = {
 }
 
 
-def window_partition(x, window_size):
+def window_partition(x, window_size):     #划分窗口 (B,C,H,W) -> (B*num_window, window_size*window_size, C)
     B, C, H, W = x.shape
     x = x.view(B, C, H // window_size, window_size, W // window_size, window_size)
     windows = x.permute(0, 2, 4, 3, 5, 1).reshape(-1, window_size*window_size, C)
